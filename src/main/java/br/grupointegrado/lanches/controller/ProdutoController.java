@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/api/produtos")
 public class ProdutoController {
 
     @Autowired
@@ -25,7 +27,7 @@ public class ProdutoController {
 //        return this.repository.findById(id)
 //                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
         Produto produto = this.repository.findById(id)
-                .orElseGet(() -> (Produto) ResponseEntity.notFound());
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
         return ResponseEntity.ok(produto);
     }
 

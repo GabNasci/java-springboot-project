@@ -27,7 +27,7 @@ public class ClienteController {
 //        return this.repository.findById(id)
 //                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado."));
         Cliente cliente = this.repository.findById(id)
-                .orElseGet(() -> (Cliente) ResponseEntity.notFound());
+                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado."));
         return ResponseEntity.ok(cliente);
     }
 
